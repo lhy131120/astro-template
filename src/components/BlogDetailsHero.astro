@@ -1,0 +1,26 @@
+---
+import heroImgMain from "../assets/images/desktop/index/hero-section.png";
+
+// const blogDate = "2024/10/21";
+// const blogIndex = "前端開發 x 職涯成長";
+// const blogTitle = "自學前端不用怕：從零開始的三大關鍵";
+// const blogTag = "最新文章";
+
+const { blogDate, blogIndex, blogTitle, blogTag } = Astro.props;
+
+---
+
+<div class="hero section-hero">
+	<div class="row row-title">
+		<div class="col hero-main-img">
+			<img class="cover-img" src={heroImgMain.src} alt="" />
+		</div>
+		<div class="col card no-bg">
+			<div class="card-body">
+				<div class="blog-item-date">{blogDate}</div>
+				<div class="blog-item-index">{blogIndex}<span class="blog-item-cat">{blogTag}</span></div>
+				<h1>{blogTitle}</h1>
+			</div>
+		</div>
+	</div>
+</div>

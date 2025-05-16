@@ -610,6 +610,88 @@ a:hover .social-icon.instagram,
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%230027D5"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>') 50% 50% /24px 24px no-repeat;
 }
 
+/* inside-contact */
+
+.inside-contact {
+  padding: 5rem;
+}
+
+.inside-contact .row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.inside-contact .row > a {
+  font-size: 2rem;
+  color: var(--dark-color);
+  font-weight: 500;
+  transition: all .25s ease;
+}
+
+.inside-contact .row > a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+  animation: shake 2s forwards infinite ease;
+}
+
+.inside-contact .row > ul {
+  display: flex;
+  gap: 0.25rem;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-10px);
+  }
+
+  10% {
+    transform: translateX(10px);
+  }
+
+  20% {
+    transform: translateX(-10px);
+  }
+
+  30% {
+    transform: translateX(10px);
+  }
+
+  40% {
+    transform: translateX(-10px);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
+
+  60% {
+    transform: translateX(-10px);
+  }
+
+  70% {
+    transform: translateX(10px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  90% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .inside-contact {
+    display: none;
+  }
+}
+
 /* Animation */
 @keyframes movetoright {
   0% {

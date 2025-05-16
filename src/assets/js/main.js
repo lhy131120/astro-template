@@ -1,6 +1,6 @@
 // swiper
-import Swiper from "swiper";
-import { Navigation, EffectFade } from "swiper/modules";
+// import Swiper from "swiper";
+// import { Navigation, EffectFade } from "swiper/modules";
 
 // gsap
 
@@ -10,6 +10,7 @@ import { Observer } from "gsap/Observer";
 gsap.registerPlugin(Observer, ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM fully loaded and parsed");
 	// Common Function - Header Scroll
 	if (document.querySelector(".header")) {
 		const header = document.querySelector(".header");
@@ -163,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 
 		observeInterSectionRatio(document.querySelectorAll(".blog-list .card"), "show", 0.45, true);
-		observeInterSectionRatio(document.querySelectorAll(".blog-content-wrap"), "loaded", 0.13);
+		observeInterSectionRatio(document.querySelectorAll(".blog-content-wrap"), "loaded", 0.05);
 	}
 
 	// Common Function - Back To Top Button
@@ -190,22 +191,22 @@ document.addEventListener("DOMContentLoaded", function () {
 	setUpBackToTop();
 
 	// Index Page - Swiper
-	if (document.querySelector(".blog")) {
-		const swiper = new Swiper(".blog .swiper", {
-			modules: [Navigation, EffectFade],
-			slidesPerView: 1,
-			spaceBetween: 24,
-			breakpoints: {
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 24,
-					effect: "slide",
-				},
-			},
-			navigation: {
-				nextEl: ".blog .swiper-button-next",
-				prevEl: ".blog .swiper-button-prev",
-			},
-		});
-	}
+	// if (document.querySelector(".blog")) {
+	// 	const swiper = new Swiper(".blog .swiper", {
+	// 		modules: [Navigation, EffectFade],
+	// 		slidesPerView: 1,
+	// 		spaceBetween: 24,
+	// 		breakpoints: {
+	// 			992: {
+	// 				slidesPerView: 3,
+	// 				spaceBetween: 24,
+	// 				effect: "slide",
+	// 			},
+	// 		},
+	// 		navigation: {
+	// 			nextEl: ".blog .swiper-button-next",
+	// 			prevEl: ".blog .swiper-button-prev",
+	// 		},
+	// 	});
+	// }
 });
