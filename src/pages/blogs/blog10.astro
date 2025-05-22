@@ -3,15 +3,16 @@ import Layout from "../../layouts/SectionLayout.astro";
 import Hero from "../../components/BlogDetailsHero.astro";
 import "../../assets/style/hero.css";
 
+const blogId = 10;
 const blogDate = "2024/10/21";
 const blogIndex = "前端開發 x 職涯成長";
 const blogTitle = "自學前端不用怕：從零開始的三大關鍵";
-const blogTag = "最新文章";
+const blogCat = "最新文章";
 
 ---
 
 <Layout>
-	<Hero blogDate={blogDate} blogIndex={blogIndex} blogTitle={blogTitle} blogTag={blogTag} />
+	<Hero blogDate={blogDate} blogIndex={blogIndex} blogTitle={blogTitle} blogCat={blogCat} />
 	<section class="blog-content-wrap">
 		<div class="blog-content-container">
 			<div class="blog-content-row">

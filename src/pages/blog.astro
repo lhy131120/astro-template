@@ -22,7 +22,7 @@ const keywords = "前端,工程師,職涯,諮詢師,部落格,學習,分享";
 			</form>
 			<ul class="card-list">
 				{
-					posts.map(({ imgSrc, date, index, title, text, buttonText, buttonLink }, idx) => {
+					posts.map(({ imgSrc, date, index, title, text, buttonText, link }, idx) => {
 						return (
 							idx !== 0 && (
 								<li class="card" data-key={idx}>
@@ -36,7 +36,7 @@ const keywords = "前端,工程師,職涯,諮詢師,部落格,學習,分享";
 										<p class="blog-item-text">{text}</p>
 									</div>
 									<div class="card-footer" />
-									<a href={buttonLink} class="button">
+									<a href={link} class="button">
 										{buttonText}
 									</a>
 								</li>

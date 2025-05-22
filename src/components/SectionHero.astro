@@ -4,17 +4,43 @@ import heroImgSub from "../assets/images/desktop/blog/about-section.png";
 
 // const { blogDate, blogIndex, blogTitle, blogTag } = Astro.props;
 
-// Top Post
+// Section Title
 const section = "Blog";
 const sectionDesc = "前端工程師 & 職涯諮詢師";
-const postDate = "2024/10/21";
-const postIndex = "前端開發 x 職涯成長";
-const postCat = "{postCat}";
-const postTitle = "自學前端不用怕：從零開始的三大關鍵";
-const postText =
-	"嗨，我是 Alyse，一名前端工程師兼職涯諮詢師。一直以來，我都很喜歡在部落格分享學習與工作心得，也常有讀者問：「我想轉職/自學前端，該從哪裡開始？」其實自學的過程既自由又具挑戰性。我整理了三大關鍵，幫助你在短期內建立紮實基礎，並快速累積實戰經驗。希望能替你的前端之路帶來一些啟發與動力！";
-const postLink = "javascript:;";
-const postButtonText = "閱讀內文";
+
+import posts from "../assets/js/post.json";
+
+const currentPost = 
+  {
+    postDate: "",
+    postIndex: "",
+    postCat: "",
+    postTitle: "",
+    postText: "",
+    postLink: "",
+    postButtonText: ""
+  };
+posts.map(({date,index,cat,title,text,link,buttonText}, idx) => {
+	if (idx === 0) {
+		currentPost.postDate = date;
+		currentPost.postIndex = index;
+		currentPost.postCat = cat;
+		currentPost.postTitle = title;
+		currentPost.postText = text;
+		currentPost.postLink = link;
+		currentPost.postButtonText = buttonText;
+	}
+});
+// Gen From JSON Later
+
+// const postDate = "2024/10/21";
+// const postIndex = "前端開發 x 職涯成長";
+// const postCat = "最新文章";
+// const postTitle = "自學前端不用怕：從零開始的三大關鍵";
+// const postText =
+// 	"嗨，我是 Alyse，一名前端工程師兼職涯諮詢師。一直以來，我都很喜歡在部落格分享學習與工作心得，也常有讀者問：「我想轉職/自學前端，該從哪裡開始？」其實自學的過程既自由又具挑戰性。我整理了三大關鍵，幫助你在短期內建立紮實基礎，並快速累積實戰經驗。希望能替你的前端之路帶來一些啟發與動力！";
+// const postLink = "javascript:;";
+// const postButtonText = "閱讀內文";
 ---
 
 <div class="hero section-hero">
@@ -35,12 +61,32 @@ const postButtonText = "閱讀內文";
 		</div>
 		<div class="col card no-bg">
 			<div class="card-body">
-				<div class="blog-item-date">{postDate}</div>
-				<div class="blog-item-index">{postIndex}<span class="blog-item-cat">{postCat}</span></div>
-				<h2>{postTitle}</h2>
-				<p class="blog-item-text">{postText}</p>
-				<a class="button" href={postLink}>{postButtonText}</a>
+				<div class="blog-item-date">{currentPost.postDate}</div>
+				<div class="blog-item-index">{currentPost.postIndex}
+          {
+            currentPost.postCat && (
+              <span class="blog-item-cat">{currentPost.postCat}</span>
+            )
+          }
+        </div>
+				<h2>{currentPost.postTitle}</h2>
+				<p class="blog-item-text">{currentPost.postText}</p>
+				<a class="button" href={currentPost.postLink}>{currentPost.postButtonText}</a>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	.card-body {
+		max-width: 636px;
+	}
+	@media screen and (max-width: 991.98px) {
+		.card-body {
+			max-width: 100%;
+		}
+		.card .blog-item-text {
+			-webkit-line-clamp: 4;
+		}
+	}
+</style>
