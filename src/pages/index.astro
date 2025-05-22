@@ -1,10 +1,20 @@
 ---
+import { Image } from "astro:assets";
+
 import HomeLayout from "../layouts/HomeLayout.astro";
 import Hero from "../components/HomeHero.astro";
 
 import "../assets/style/index.css";
 
 import posts from "../assets/js/post.json";
+import serviceImg1 from "/src/assets/images/desktop/index/services-img1.png";
+import serviceImg2 from "/src/assets/images/desktop/index/services-img2.png";
+import serviceImg3 from "/src/assets/images/desktop/index/services-img3.png";
+import serviceImg4 from "/src/assets/images/desktop/index/services-img4.png";
+import peopleImg1 from "/src/assets/images/desktop/index/people.png";
+import peopleImg2 from "/src/assets/images/desktop/index/people2.png";
+import peopleImg3 from "/src/assets/images/desktop/index/people3.png";
+import peopleImg4 from "/src/assets/images/desktop/index/people4.png";
 // import Swiper from "swiper";
 // import { Navigation, EffectFade } from "swiper/modules";
 
@@ -17,23 +27,23 @@ const services = [
 		title: "履歷健檢",
 		description:
 			"履歷是打開機會之門的第一步。讓我協助你突顯專業技術與核心能力，並透過簡短模擬面試為你加分，讓面試官第一眼就被你吸引。",
-		imgSrc: "/src/assets/images/desktop/index/services-img1.png",
+		imgSrc: serviceImg1,
 	},
 	{
 		title: "線上諮詢",
 		description: "想快速解決前端學習瓶頸，或需要專業職涯指引？透過線上一對一諮詢，我將協助你更有方向地邁進。",
-		imgSrc: "/src/assets/images/desktop/index/services-img2.png",
+		imgSrc: serviceImg2,
 	},
 	{
 		title: "網頁開發",
 		description: "想打造高效能、具美感的網站？我提供從需求訪談到架構實作的一站式服務，讓你的品牌與產品在線上脫穎而出。",
-		imgSrc: "/src/assets/images/desktop/index/services-img3.png",
+		imgSrc: serviceImg3,
 	},
 	{
 		title: "企業內訓",
 		description:
 			"想讓團隊快速掌握前端最新技術或優化現有專案流程？我可協助打造專業、實用的企業內訓課程，一次解決團隊痛點。",
-		imgSrc: "/src/assets/images/desktop/index/services-img4.png",
+		imgSrc: serviceImg4,
 	},
 ];
 
@@ -41,25 +51,25 @@ const jobCases = [
 	{
 		title: "無經驗到前端工程師 Offer",
 		description: ["打造前端專案與履歷亮點", "深度強化面試表現"],
-		imgSrc: "/src/assets/images/desktop/index/people.png",
+		imgSrc: peopleImg1,
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 	{
 		title: "轉職迷茫到明確學習規劃",
 		description: ["制訂階段性目標與時間安排", "鼓勵參與前端社群或活動"],
-		imgSrc: "/src/assets/images/desktop/index/people2.png",
+		imgSrc: peopleImg2,
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 	{
 		title: "面試緊張到從容應對",
 		description: ["透過面試模擬找出常犯的邏輯漏洞", "討論遇到不熟悉議題時的回應方式"],
-		imgSrc: "/src/assets/images/desktop/index/people3.png",
+		imgSrc: peopleImg3,
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 	{
 		title: "面試緊張到從容應對",
 		description: ["擬定進階框架或技術研究目標", "培養跨團隊溝通與簡報能力"],
-		imgSrc: "/src/assets/images/desktop/index/people4.png",
+		imgSrc: peopleImg4,
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 ];
@@ -121,7 +131,7 @@ const socialLinks = [
 						return (
 							<li class="service-item">
 								<span class="img">
-									<img src={imgSrc} alt={title} class="services-bg" />
+									<Image src={imgSrc} alt={title} class:list={["services-bg"]} />
 								</span>
 								<span class="text">
 									<h3>{title}</h3>
@@ -146,7 +156,7 @@ const socialLinks = [
 			<div class="swiper">
 				<ul class="card-list swiper-wrapper">
 					{
-						posts.map(({ date, index, cat, title, text, imgSrc, buttonText, buttonLink }) => {
+						posts.map(({ date, index, cat, title, text, imgSrc, buttonText, link }) => {
 							return (
 								<li class="card swiper-slide" data-key={title}>
 									<div class="card-header">
@@ -161,7 +171,7 @@ const socialLinks = [
 										<p class="blog-item-text">{text}</p>
 									</div>
 									<div class="card-footer" />
-									<a href={buttonLink} class="button">
+									<a href={link} class="button">
 										{buttonText}
 									</a>
 								</li>
@@ -207,7 +217,7 @@ const socialLinks = [
 						return (
 							<li class="card">
 								<div class="card-header">
-									<img src={job.imgSrc} alt="" />
+									<Image src={job.imgSrc} alt={job.title} />
 								</div>
 								<div class="card-body">
 									<p class="card-text">{job.title}</p>
