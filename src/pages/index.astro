@@ -8,14 +8,15 @@ import Hero from "../components/HomeHero.astro";
 import "../assets/style/index.css";
 
 import posts from "../assets/js/post.json";
-// import serviceImg1 from "../images/desktop/index/services-img1.png";
-// import serviceImg2 from "../images/desktop/index/services-img2.png";
-// import serviceImg3 from "../images/desktop/index/services-img3.png";
-// import serviceImg4 from "../images/desktop/index/services-img4.png";
+// import serviceImg1 from "/public/images/desktop/index/services-img1.png";
+// import serviceImg2 from "/public/images/desktop/index/services-img2.png";
+// import serviceImg3 from "/public/images/desktop/index/services-img3.png";
+// import serviceImg4 from "/public/images/desktop/index/services-img4.png";
 // import peopleImg1 from "/images/desktop/index/people.png";
 // import peopleImg2 from "/images/desktop/index/people2.png";
 // import peopleImg3 from "/images/desktop/index/people3.png";
 // import peopleImg4 from "/images/desktop/index/people4.png";
+// console.log("peopleImg1", serviceImg1);
 
 const title = "首頁";
 const description = "首頁 - 前端職涯諮詢師 Alyse Wang 的個人網站，提供前端開發、職涯規劃、履歷健檢等專業服務。";
@@ -44,33 +45,31 @@ const services = [
 			"想讓團隊快速掌握前端最新技術或優化現有專案流程？我可協助打造專業、實用的企業內訓課程，一次解決團隊痛點。",
 		imgSrc: "/images/desktop/index/services-img4.png",
 	},
-
-
 ];
 
 const jobCases = [
 	{
 		title: "無經驗到前端工程師 Offer",
 		description: ["打造前端專案與履歷亮點", "深度強化面試表現"],
-		imgSrc: "../../images/desktop/index/people.png",
+		imgSrc: "/images/desktop/index/people.png",
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 	{
 		title: "轉職迷茫到明確學習規劃",
 		description: ["制訂階段性目標與時間安排", "鼓勵參與前端社群或活動"],
-		imgSrc: "../../images/desktop/index/people2.png",
+		imgSrc: "/images/desktop/index/people2.png",
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 	{
 		title: "面試緊張到從容應對",
 		description: ["透過面試模擬找出常犯的邏輯漏洞", "討論遇到不熟悉議題時的回應方式"],
-		imgSrc: "../../images/desktop/index/people3.png",
+		imgSrc: "/images/desktop/index/people3.png",
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 	{
 		title: "面試緊張到從容應對",
 		description: ["擬定進階框架或技術研究目標", "培養跨團隊溝通與簡報能力"],
-		imgSrc: "../../images/desktop/index/people4.png",
+		imgSrc: "/images/desktop/index/people4.png",
 		podcastLink: "https://www.podbean.com/media/share/pb-3f8g7-1e2c4a0",
 	},
 ];
@@ -119,6 +118,14 @@ const socialLinks = [
 		arrowText: "Go",
 	},
 ];
+
+const images = import.meta.glob("/public/images/**/*.{png,jpg,jpeg,webp}", { eager: true });
+function getImageSrc(imgPath) {
+	// console.log("Looking for:", imgPath); // 调试用
+	// console.log("Available images:", Object.keys(images)); // 调试用
+	const image = images[imgPath];
+	return image?.default;
+}
 ---
 
 <HomeLayout title={title} description={description} keywords={keywords}>
@@ -129,6 +136,7 @@ const socialLinks = [
 			<ul class="services-list">
 				{
 					services.map(({ title, description, imgSrc }) => {
+						const imageSrc = getImageSrc(imgSrc);
 						return (
 							<li class="service-item">
 								<span class="img">
@@ -155,31 +163,34 @@ const socialLinks = [
 		</div>
 		<div class="container container-lg">
 			<div class="swiper">
-				<!-- <ul class="card-list swiper-wrapper">
+				<ul class="card-list swiper-wrapper">
 					{
-						posts.map(({ date, index, cat, title, text, imgSrc, buttonText, link }) => {
+						posts.map(({ date, index, cat, title, text, imgSrc, buttonText, link, isIndexDisplay }) => {
+							const imageSrc = getImageSrc(imgSrc);
 							return (
-								<li class="card swiper-slide" data-key={title}>
-									<div class="card-header">
-										<img class="cover-img" src={imgSrc} alt={title} />
-									</div>
-									<div class="card-body">
-										<div class="blog-item-date">{date}</div>
-										<div class="blog-item-index">
-											{index} {cat && <span class="blog-item-cat">{cat}</span>}
+								isIndexDisplay && (
+									<li class="card swiper-slide" data-key={title}>
+										<div class="card-header">
+											<img class="cover-img" src={imgSrc} alt={title} />
 										</div>
-										<h3>{title}</h3>
-										<p class="blog-item-text">{text}</p>
-									</div>
-									<div class="card-footer" />
-									<a href={link} class="button">
-										{buttonText}
-									</a>
-								</li>
+										<div class="card-body">
+											<div class="blog-item-date">{date}</div>
+											<div class="blog-item-index">
+												{index} {cat && <span class="blog-item-cat">{cat}</span>}
+											</div>
+											<h3>{title}</h3>
+											<p class="blog-item-text">{text}</p>
+										</div>
+										<div class="card-footer" />
+										<a href={link} class="button">
+											{buttonText}
+										</a>
+									</li>
+								)
 							);
 						})
 					}
-				</ul> -->
+				</ul>
 				<div class="swiper-controller">
 					<a href="javascript:;" class="swiper-button-prev"></a>
 					<a href="javascript:;" class="swiper-button-next"></a>
@@ -193,7 +204,7 @@ const socialLinks = [
 			<div class="row">
 				<div class="col">
 					<div class="imgWrap">
-						<img class="cover-img" src="/src/assets/images/desktop/index/section-job.png" alt="" />
+						<Image width={697} height={578} class="cover-img" src="/images/desktop/index/section-job.png" alt="" />
 					</div>
 				</div>
 				<div class="col">
@@ -212,18 +223,18 @@ const socialLinks = [
 					</div>
 				</div>
 			</div>
-			<!-- <ul class="section-jobs-case-list">
+			<ul class="section-jobs-case-list">
 				{
-					jobCases.map((job) => {
+					jobCases.map(({ title, description, imgSrc, podcastLink }) => {
 						return (
 							<li class="card">
 								<div class="card-header">
-									<Image src={job.imgSrc} alt={job.title} />
+									<Image src={imgSrc} alt={title} inferSize width={80} height={80} />
 								</div>
 								<div class="card-body">
-									<p class="card-text">{job.title}</p>
+									<p class="card-text">{title}</p>
 									<ul>
-										{job.description.map((desc) => {
+										{description.map((desc) => {
 											return (
 												<li>
 													<span class="box" />
@@ -234,7 +245,7 @@ const socialLinks = [
 									</ul>
 								</div>
 								<div class="card-footer">
-									<a href={job.podcastLink} target="_blank" class="button">
+									<a href={podcastLink} target="_blank" class="button">
 										前往聆聽 podcast
 									</a>
 								</div>
@@ -242,13 +253,20 @@ const socialLinks = [
 						);
 					})
 				}
-			</ul> -->
+			</ul>
 		</div>
 	</section>
 	<section class="newsletter">
 		<div class="row">
 			<div class="col">
-				<img class="cover-img" src="/src/assets/images/desktop/index/section-newsletter.png" alt="newsletter-img" />
+				<!-- <img class="cover-img" src="/images/desktop/index/section-newsletter.png" alt="newsletter-img" /> -->
+				<Image
+					width={960}
+					height={834}
+					class="cover-img"
+					src="/images/desktop/index/section-newsletter.png"
+					alt="newsletter-img"
+				/>
 			</div>
 			<div class="col">
 				<div class="newsletter-block">
