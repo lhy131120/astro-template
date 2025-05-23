@@ -699,7 +699,7 @@ a:hover .social-icon.instagram,
   }
 
   50% {
-    transform: translateX(-1rem);
+    transform: translateX(-.5rem);
   }
 
   100% {

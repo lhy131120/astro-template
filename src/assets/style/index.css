@@ -154,6 +154,7 @@
     padding: 1.5rem;
   }
 }
+
 /* =============================================== */
 /* section - blog */
 
@@ -545,6 +546,10 @@
   border-bottom: 1px solid var(--secondary-color);
 }
 
+.contact-list .social-icon {
+  transition: all 0.5s ease!important;
+}
+
 .contact-list .contact-item {
   border-bottom: 1px solid var(--dark-color);
   opacity: 0;
@@ -607,4 +612,31 @@
 
 .contact-list .text-area .channel-name.text-underline {
   text-decoration: underline;
+}
+
+@media (max-width: 991.98px) {
+  .contact-list .social-icon {
+    width: 2.25rem;
+  }
+  .contact-list .contact-link {
+    flex-wrap: wrap;
+  }
+
+  .contact-list .text-area {
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 0 1 100%;
+    width: 100%;
+  }
+
+  .contact-list .text-area > span {
+    font-size: 1.5rem;
+  }
+
+  .contact-list .text-area .channel-name {
+    margin-right: 0.5rem;
+  }
+    .contact-list .contact-link .arrow {
+      margin-top: 0.75rem;
+    }
 }
