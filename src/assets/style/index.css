@@ -484,7 +484,7 @@
   justify-content: center;
   padding: .75rem;
   background-repeat: no-repeat;
-  background-image: url('/src/assets/images/desktop/index/section-newsletter-right.png');
+  background-image: url('/images/desktop/index/section-newsletter-right.png');
   background-position: 50% 50%;
   background-size: cover;
 }
