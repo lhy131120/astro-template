@@ -1,4 +1,5 @@
 ---
+// @ts-nocheck
 import { Image } from "astro:assets";
 import Layout from "../layouts/SectionLayout.astro";
 import Hero from "../components/SectionHero.astro";
@@ -6,21 +7,14 @@ import "../assets/style/hero.css";
 
 import posts from "../assets/js/post.json";
 
-async function getImage(imgSrc) {
-	try {
-		const image = await import(`/src/assets/images/${imgSrc}`);
-		return image.default;
-	} catch (error) {
-		return null;
-	}
-}
+const images = import.meta.glob("/src/assets/images/**/*.{png,jpg,jpeg,webp}", { eager: true });
 
-const blogItems = await Promise.all(
-	posts.map(async (post) => ({
-		...post,
-		image: await getImage(post.imgSrc),
-	}))
-);
+function getImageSrc(imgPath) {
+	// console.log("Looking for:", imgPath); // 调试用
+	// console.log("Available images:", Object.keys(images)); // 调试用
+	const image = images[imgPath];
+	return image?.default;
+}
 
 const title = "部落格";
 const description = "前端工程師 & 職涯諮詢師";
@@ -38,12 +32,14 @@ const keywords = "前端,工程師,職涯,諮詢師,部落格,學習,分享";
 			</form>
 			<ul class="card-list">
 				{
-					blogItems.map(({ image, date, index, title, text, buttonText, link }, idx) => {
+					posts.map(({ imgSrc, date, index, title, text, buttonText, link }, idx) => {
+						const imageSrc = getImageSrc(imgSrc);
 						return (
 							idx !== 0 && (
 								<li class="card" data-key={idx}>
 									<div class="card-header">
-										{image && <Image class="cover-img" src={image} alt={title} />}
+										{imgSrc && 
+                    <Image class="cover-img" src={imgSrc} alt={title} width={300} height={200} inferSize={true} />}
 									</div>
 									<div class="card-body">
 										<div class="blog-item-date">{date}</div>

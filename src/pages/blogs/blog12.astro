@@ -9,9 +9,12 @@ const blogIndex = "前端開發 x 職涯成長";
 const blogTitle = "自學前端不用怕：從零開始的三大關鍵";
 const blogCat = "最新文章";
 
+const title = `部落格 - ${blogTitle}`;
+const description = blogTitle;
+const keywords = "前端,工程師,職涯,諮詢師,部落格,學習,分享";
 ---
 
-<Layout>
+<Layout title={title} description={description} keywords={keywords}>
 	<Hero blogDate={blogDate} blogIndex={blogIndex} blogTitle={blogTitle} blogCat={blogCat} />
 	<section class="blog-content-wrap">
 		<div class="blog-content-container">
