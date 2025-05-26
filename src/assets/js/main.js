@@ -1,9 +1,4 @@
-// swiper
-// import Swiper from "swiper";
-// import { Navigation, EffectFade } from "swiper/modules";
-
 // gsap
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
@@ -22,14 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				end: "bottom+=10 top",
 				scrub: 1,
 				onEnter: () => {
-					setTimeout(() => {
-						header.classList.add("sticky");
-					}, 300);
+					// Add a small delay before adding the sticky class
+          tl.delay(1.5).then(() => header.classList.add("sticky"));
 				},
 				onEnterBack: () => {
-					setTimeout(() => {
-						header.classList.remove("sticky");
-					}, 100);
+					tl.delay(1.2).then(() => header.classList.remove("sticky"));
 				},
 			},
 		});
@@ -175,38 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.warn("Back to Top button not found in the DOM.");
 			return;
 		}
-		const toggleVisibility = () => {
-			backTopBtn.classList.toggle("show", window.scrollY > 200);
-		};
 
-		window.addEventListener("scroll", toggleVisibility);
-		backTopBtn.addEventListener("click", function () {
-			window.scrollTo({
-				top: 0,
-				behavior: "smooth",
-			});
-		});
+		const onScroll = () => backTopBtn.classList.toggle("show", window.scrollY > 200);
+		window.addEventListener("scroll", onScroll);
+		backTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 	};
 
 	setUpBackToTop();
-
-	// Index Page - Swiper
-	// if (document.querySelector(".blog")) {
-	// 	const swiper = new Swiper(".blog .swiper", {
-	// 		modules: [Navigation, EffectFade],
-	// 		slidesPerView: 1,
-	// 		spaceBetween: 24,
-	// 		breakpoints: {
-	// 			992: {
-	// 				slidesPerView: 3,
-	// 				spaceBetween: 24,
-	// 				effect: "slide",
-	// 			},
-	// 		},
-	// 		navigation: {
-	// 			nextEl: ".blog .swiper-button-next",
-	// 			prevEl: ".blog .swiper-button-prev",
-	// 		},
-	// 	});
-	// }
 });
