@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		errorMessage.style.display = "none";
 
 		try {
-			const response = await fetch("/.netlify/functions/subscribe", {
+			const response = await fetch("/netlify/functions/subscribe", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ name, email }),
@@ -209,5 +209,5 @@ document.addEventListener("DOMContentLoaded", function () {
 			errorMessage.style.display = "block";
 		}
 	});
-  
+
 });
