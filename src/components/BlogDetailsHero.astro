@@ -1,7 +1,6 @@
 ---
 import heroImgMain from "../../public/images/desktop/index/hero-section.png";
 const { blogDate, blogIndex, blogTitle, blogCat } = Astro.props;
-
 ---
 
 <div class="hero section-hero">
@@ -11,10 +10,11 @@ const { blogDate, blogIndex, blogTitle, blogCat } = Astro.props;
 		</div>
 		<div class="col card no-bg">
 			<div class="card-body">
-				<div class="blog-item-date">{blogDate}</div>
-				<div class="blog-item-index">{blogIndex}
-          {blogCat && <span class="blog-item-cat">{blogCat}</span>}
-        </div>
+				<div class="blog-item-date"><time datetime={blogDate}>{blogDate}</time></div>
+				<div class="blog-item-index">
+					{blogIndex}
+					{blogCat && <span class="blog-item-cat">{blogCat}</span>}
+				</div>
 				<h1>{blogTitle}</h1>
 			</div>
 		</div>

@@ -8,17 +8,16 @@ const sectionDesc = "前端工程師 & 職涯諮詢師";
 
 import posts from "../assets/js/post.json";
 
-const currentPost = 
-  {
-    postDate: "",
-    postIndex: "",
-    postCat: "",
-    postTitle: "",
-    postText: "",
-    postLink: "",
-    postButtonText: ""
-  };
-posts.map(({date,index,cat,title,text,link,buttonText}, idx) => {
+const currentPost = {
+	postDate: "",
+	postIndex: "",
+	postCat: "",
+	postTitle: "",
+	postText: "",
+	postLink: "",
+	postButtonText: "",
+};
+posts.map(({ date, index, cat, title, text, link, buttonText }, idx) => {
 	if (idx === 0) {
 		currentPost.postDate = date;
 		currentPost.postIndex = index;
@@ -49,14 +48,11 @@ posts.map(({date,index,cat,title,text,link,buttonText}, idx) => {
 		</div>
 		<div class="col card no-bg">
 			<div class="card-body">
-				<div class="blog-item-date">{currentPost.postDate}</div>
-				<div class="blog-item-index">{currentPost.postIndex}
-          {
-            currentPost.postCat && (
-              <span class="blog-item-cat">{currentPost.postCat}</span>
-            )
-          }
-        </div>
+				<div class="blog-item-date"><time datetime={currentPost.postDate}>{currentPost.postDate}</time></div>
+				<div class="blog-item-index">
+					{currentPost.postIndex}
+					{currentPost.postCat && <span class="blog-item-cat">{currentPost.postCat}</span>}
+				</div>
 				<h2>{currentPost.postTitle}</h2>
 				<p class="blog-item-text">{currentPost.postText}</p>
 				<a class="button" href={currentPost.postLink}>{currentPost.postButtonText}</a>
