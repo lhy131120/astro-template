@@ -38,19 +38,23 @@ const keywords = "前端,工程師,職涯,諮詢師,部落格,學習,分享";
 							idx !== 0 && (
 								<li class="card" data-key={idx}>
 									<div class="card-header">
-										{imgSrc && 
-                    <Image class="cover-img" src={imgSrc} alt={title} width={300} height={200} inferSize={true} />}
+										{imgSrc && (
+											<Image class="cover-img" src={imgSrc} alt={title} width={300} height={200} inferSize={true} />
+										)}
 									</div>
 									<div class="card-body">
-										<div class="blog-item-date">{date}</div>
+										<div class="blog-item-date">
+											<time datetime={date}>{date}</time>
+										</div>
 										<div class="blog-item-index">{index}</div>
 										<h3>{title}</h3>
 										<p class="blog-item-text">{text}</p>
 									</div>
-									<div class="card-footer" />
-									<a href={link} class="button">
-										{buttonText}
-									</a>
+									<div class="card-footer">
+										<a href={link} class="button">
+											{buttonText}
+										</a>
+									</div>
 								</li>
 							)
 						);
