@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, passthroughImageService } from "astro/config";
+import { defineConfig, passthroughImageService, envField } from "astro/config";
 import image from "@astrojs/image";
 
 // https://astro.build/config

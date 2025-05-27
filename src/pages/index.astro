@@ -8,15 +8,10 @@ import Hero from "../components/HomeHero.astro";
 import "../assets/style/index.css";
 
 import posts from "../assets/js/post.json";
-// import serviceImg1 from "/public/images/desktop/index/services-img1.png";
-// import serviceImg2 from "/public/images/desktop/index/services-img2.png";
-// import serviceImg3 from "/public/images/desktop/index/services-img3.png";
-// import serviceImg4 from "/public/images/desktop/index/services-img4.png";
-// import peopleImg1 from "/images/desktop/index/people.png";
-// import peopleImg2 from "/images/desktop/index/people2.png";
-// import peopleImg3 from "/images/desktop/index/people3.png";
-// import peopleImg4 from "/images/desktop/index/people4.png";
-// console.log("peopleImg1", serviceImg1);
+
+const apiUrl = import.meta.env.BREVO_API_URL;
+const apiKey = import.meta.env.BREVO_API_KEY;
+console.log("All env variables:", apiKey);
 
 const title = "首頁";
 const description = "首頁 - 前端職涯諮詢師 Alyse Wang 的個人網站，提供前端開發、職涯規劃、履歷健檢等專業服務。";
@@ -259,7 +254,6 @@ function getImageSrc(imgPath) {
 	<section class="newsletter">
 		<div class="row">
 			<div class="col">
-				<!-- <img class="cover-img" src="/images/desktop/index/section-newsletter.png" alt="newsletter-img" /> -->
 				<Image
 					width={960}
 					height={834}
@@ -272,15 +266,17 @@ function getImageSrc(imgPath) {
 				<div class="newsletter-block">
 					<h2>訂閱電子報</h2>
 					<p>立即訂閱，搶先掌握<span class="text-primary">前端 x 職涯</span>的獨家資訊！</p>
-					<form action="">
+					<form id="newsletter">
 						<div class="form-row">
-							<input class="form-control" type="text" placeholder="請輸入您的大名" />
+							<input id="newsletter-name" class="form-control" type="text" placeholder="請輸入您的大名" />
 						</div>
 						<div class="form-row">
-							<input class="form-control" type="email" placeholder="請輸入你的電子郵件" />
+							<input id="newsletter-email" class="form-control" type="email" placeholder="請輸入你的電子郵件" />
 						</div>
-						<button type="button" class="button button-primary">啟動訂閱</button>
+						<button id="newsletter-submit" type="submit" class="button button-primary">啟動訂閱</button>
 					</form>
+					<div id="success-message" class="success-message">訂閱成功！請檢查您的電子郵件以確認訂閱。</div>
+					<div id="error-message" class="error-message"></div>
 				</div>
 			</div>
 		</div>
@@ -310,10 +306,24 @@ function getImageSrc(imgPath) {
 	</section>
 </HomeLayout>
 
-<script>
-	// import Swiper from "swiper";
-	// import { Navigation, EffectFade } from "swiper/modules";
+<style>
+	.success-message,
+	.error-message {
+		margin-top: 10px;
+		padding: 10px;
+		display: none;
+	}
+	.success-message {
+		background-color: #d4edda;
+		color: #155724;
+	}
+	.error-message {
+		background-color: #f8d7da;
+		color: #721c24;
+	}
+</style>
 
+<script>
 	if (document.querySelector(".blog")) {
 		const { default: Swiper } = await import("swiper");
 		const { Navigation, EffectFade } = await import("swiper/modules");
@@ -334,18 +344,5 @@ function getImageSrc(imgPath) {
 			},
 		});
 	}
-</script>
 
-<script id="mcjs">
-	!(function (c, h, i, m, p) {
-		(m = c.createElement(h)),
-			(p = c.getElementsByTagName(h)[0]),
-			(m.async = 1),
-			(m.src = i),
-			p.parentNode.insertBefore(m, p);
-	})(
-		document,
-		"script",
-		"https://chimpstatic.com/mcjs-connected/js/users/b7c450b5cc3bd37a96c7442a6/7ab4291aa4b3282672495d4c9.js"
-	);
 </script>

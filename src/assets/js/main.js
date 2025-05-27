@@ -174,4 +174,40 @@ document.addEventListener("DOMContentLoaded", function () {
 	};
 
 	setUpBackToTop();
+
+  console.log(`API option!!! : ${import.meta.env.BREVO_API_URL}`);
+
+  document.getElementById("newsletter").addEventListener("submit", async (e) => {
+		e.preventDefault();
+
+		const name = document.getElementById("newsletter-name").value.trim();
+		const email = document.getElementById("newsletter-email").value.trim();
+		const successMessage = document.getElementById("success-message");
+		const errorMessage = document.getElementById("error-message");
+
+		// 重置訊息顯示
+		successMessage.style.display = "none";
+		errorMessage.style.display = "none";
+
+		try {
+			const response = await fetch("/.netlify/functions/subscribe", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ name, email }),
+			});
+
+			const result = await response.json();
+			if (response.ok) {
+				successMessage.style.display = "block";
+				document.getElementById("newsletter").reset();
+			} else {
+				errorMessage.textContent = result.error || "訂閱失敗，請稍後再試。";
+				errorMessage.style.display = "block";
+			}
+		} catch (error) {
+			errorMessage.textContent = "發生錯誤，請檢查您的網路連線。";
+			errorMessage.style.display = "block";
+		}
+	});
+  
 });
